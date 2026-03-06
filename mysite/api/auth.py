@@ -76,7 +76,7 @@ async def register(user_data: RegisterSchema, db: Session = Depends(get_db)):
 async def login(user_data: LoginSchema, db: Session = Depends(get_db)):
     user_db = db.query(UserProfile).filter(UserProfile.username == user_data.username).first()
     if not user_db or not verify_password(user_data.password, user_db.password):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Username je password tuura eme')
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Username je password tuura emes')
     access_token = create_access_token({'sub': user_db.username})
     refresh_token = create_refresh_token({'sub': user_db.username})
 
